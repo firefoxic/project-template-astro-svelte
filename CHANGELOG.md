@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and 
 
 ## [Unreleased]
 
+### Added
+
+- Automatic generation of the `robots.txt` and sitemap files during production build.
+
 ## [0.1.0] — 2024–07–28
 
 ### Added
