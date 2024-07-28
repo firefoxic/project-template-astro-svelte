@@ -1,0 +1,24 @@
+---
+---
+
+<footer class:list={[Astro.props.class, `Footer`]}>
+	<div class="Page-Centerer Footer-Container">
+		<slot />
+	</div>
+</footer>
+
+<style>
+.Footer {
+	background: var(--ColorUI-BG_special);
+
+	@media (width >= 640px) {
+		box-sizing: border-box;
+	}
+}
+
+.Footer-Container {
+	display: block flex;
+	justify-content: space-between;
+	align-items: center;
+}
+</style>

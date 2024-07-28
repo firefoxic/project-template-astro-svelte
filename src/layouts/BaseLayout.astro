@@ -1,0 +1,117 @@
+---
+import Fonts from "../shared/fonts/index.astro"
+import { navLinks } from "../shared/data.js"
+import "../shared/index.css"
+
+import Copyright from "../components/Copyright.astro"
+import Footer from "../components/Footer.astro"
+import Header from "../components/Header.astro"
+import Logo from "../components/Logo.astro"
+import Navigation from "../components/Navigation.astro"
+
+import { normalizePath } from "../../utils/normalizePath.js"
+
+const { page } = Astro.props
+---
+
+<!DOCTYPE html>
+
+<html lang={page.lang || `en`}>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content={page.description}>
+		<meta name="color-scheme" content="light dark">
+		<title>{page.title}</title>
+		<Fonts />
+		<link rel="icon" href={normalizePath(`/favicon.ico`)} sizes="32x32">
+		<link rel="icon" href={normalizePath(`/favicons/icon.svg`)} type="image/svg+xml">
+		<link rel="apple-touch-icon" href={normalizePath(`/favicons/icon-180.png`)}>
+		<link rel="manifest" href={normalizePath(`/manifest.webmanifest`)}>
+	</head>
+
+	<body class="Page" dir="auto">
+		<Header class:list={[`Page-Header`]}>
+			<Logo class:list={[`Header-Logo`]} />
+			<Navigation navLinks={navLinks} />
+		</Header>
+
+		<main class="Page-Content">
+			<slot />
+		</main>
+
+		<Footer class:list={[`Page-Footer`]}>
+			<Logo class:list={[`Footer-Logo`]} />
+			<Copyright class:list={[`Footer-Copyright`]} />
+		</Footer>
+
+		<script>
+		import "../scripts/index.js"
+		</script>
+	</body>
+
+</html>
+
+<style is:global>
+@property --ContentIndent-Min {
+	syntax: "<integer>";
+	inherits: false;
+	initial-value: 20;
+}
+
+@property --ContentIndent-Max {
+	syntax: "<integer>";
+	inherits: false;
+	initial-value: 40;
+}
+
+@property --ContentIndent {
+	syntax: "<length>";
+	inherits: true;
+	initial-value: 1rem;
+}
+
+.Page {
+	margin: initial;
+	min-block-size: 100svb;
+	display: block grid;
+	grid-template-rows: auto 1fr;
+}
+
+.Page-Centerer {
+	margin-inline:
+		clamp(
+			1px * var(--ContentIndent-Min),
+			1px * var(--ContentIndent-Min)
+			+
+			(var(--ContentIndent-Max) - var(--ContentIndent-Min))
+			*
+			(100vi - 1px * var(--Breakpoint-Min))
+			/
+			(var(--Breakpoint-Max) - var(--Breakpoint-Min)),
+			calc(1px * var(--ContentIndent-Max))
+		);
+
+	@media (width >= 1280px) {
+		margin-inline: auto;
+		inline-size: calc(1px * (var(--Breakpoint-Max) - 2 * var(--ContentIndent-Max)));
+	}
+}
+
+.Page-Header {
+	display: block grid;
+	grid: var(--Page-Grid);
+}
+
+.Page-Footer {
+	display: block grid;
+	grid: var(--Page-Grid);
+}
+
+.Page-Content {
+	display: block grid;
+	align-self: start;
+	align-content: start;
+}
+</style>

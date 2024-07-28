@@ -1,0 +1,7 @@
+@import "./global/colors.css";
+@import "./global/motion.css";
+@import "./global/scroll-lock.css";
+@import "./global/typography.css";
+@import "./global/images.css";
+@import "./global/focus.css";
+@import "./icons/index.css";

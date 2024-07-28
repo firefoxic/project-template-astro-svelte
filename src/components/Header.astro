@@ -1,0 +1,25 @@
+---
+---
+
+<header class:list={[Astro.props.class, `Header`]}>
+	<div class="Page-Centerer Header-Container">
+		<slot />
+	</div>
+</header>
+
+<style>
+.Header {
+	background: var(--ColorUI-BG_special);
+
+	@media (width >= 640px) {
+		box-sizing: border-box;
+	}
+}
+
+.Header-Container {
+	display: block flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+</style>

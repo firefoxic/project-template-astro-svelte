@@ -1,0 +1,25 @@
+---
+import { normalizePath } from "../../utils/normalizePath.js"
+
+import logo from "../shared/images/logo.svg"
+---
+
+<div class:list={[Astro.props.class, `Logo`]}>
+	<a class="Logo-Link" href={normalizePath(`/`)}>
+		<img class="Logo-Image" src={logo.src} width="32" height="32" alt="Logotype">
+	</a>
+</div>
+
+<style>
+.Logo-Link {
+	margin-block: 0.5em;
+	display: block flow-root;
+	font-family: var(--FontAccent-Family);
+}
+
+.Logo-Image {
+	display: block flow-root;
+	block-size: 2lh;
+	inline-size: auto;
+}
+</style>

@@ -1,0 +1,47 @@
+# build output
+dist/
+
+# raw files and refs
+raw/
+
+# old raster formats
+src/**/*.gif
+src/**/*.jpeg
+src/**/*.jpg
+src/**/*.png
+!src/shared/favicons/*.png
+
+# generated files
+public/Links.md
+src/shared/images/**/*.json
+
+# source favicons
+public/16.svg
+public/32.svg
+public/touch.svg
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# lock files
+package-lock.json
+yarn.lock
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/

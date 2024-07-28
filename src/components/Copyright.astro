@@ -1,0 +1,25 @@
+---
+---
+
+<div class:list={[Astro.props.class, `Copyright`]}>
+	Developed by
+	<a class="Copyright-Link" href="https://github.com/firefoxic">
+		<span class="Copyright-Name">firefoxic</span>
+	</a>
+</div>
+
+<style>
+.Copyright {
+	font-family: var(--FontAccent-Family);
+}
+
+.Copyright-Link {
+	&:hover {
+		color: var(--ColorUI-Accent);
+	}
+}
+
+.Copyright-Name {
+	font-style: italic;
+}
+</style>

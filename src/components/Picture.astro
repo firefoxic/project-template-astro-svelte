@@ -1,0 +1,47 @@
+---
+let { name, alt } = Astro.props
+let { maxDensity, sizes, formats, dests } = await import(`../shared/images/${name}.js`).then((m) => m.default)
+---
+
+<picture>
+	{formats.map((format, formatIndex) => sizes.map(({ breakpoint = ``, width, height }, sizeIndex) => {
+		let isLastFormat = formatIndex === formats.length - 1
+		let isLastSize = sizeIndex === sizes.length - 1
+		let isImgTag = isLastFormat && isLastSize
+		let src = ``
+		let srcset = ``
+
+		for (let density = maxDensity; density !== 0; density--) {
+			let sourceName = `${name}${breakpoint ? `-` : ``}${breakpoint}@${density}x`
+			let destPath = dests.find((path) => path.includes(sourceName) && path.endsWith(format))
+			let descriptor = density !== 1 ? ` ${density}x` : ``
+
+			if (isImgTag && density === 1) {
+				src = destPath
+			} else {
+				srcset += `${srcset ? `, ` : ``}${destPath}${descriptor}`
+			}
+		}
+
+		return isImgTag
+			? (
+				<img
+					class:list={Astro.props.class}
+					src={src}
+					srcset={srcset}
+					width={width}
+					height={height}
+					alt={alt || ``}
+					>
+			)
+			: (
+				<source
+					srcset={srcset}
+					type={`image/${format}`}
+					width={width}
+					height={height}
+					media={breakpoint ? `(width >= ${breakpoint}px)` : undefined}
+					>
+			)
+	}))}
+</picture>
