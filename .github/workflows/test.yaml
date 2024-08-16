@@ -20,6 +20,6 @@ jobs:
           cache: pnpm
       - run: pnpm install
       - run: pnpm lint
-      - run: pnpm exec gulp processMarkup
+      - run: pnpm build
       - run: pnpm add -D w3c-html-validator
       - run: pnpm exec html-validator dist/**/*.html
