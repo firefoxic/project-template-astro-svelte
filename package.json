@@ -22,7 +22,7 @@
 	},
 	"packageManager": "pnpm@9.7.1",
 	"scripts": {
-		"prepare": "husky",
+		"prepare": "git config core.hooksPath .git-hooks || echo 'Not in a git repo'",
 		"astro": "astro",
 		"dev": "astro dev",
 		"start": "astro dev",
@@ -54,7 +54,6 @@
 		"eslint": "^9.9.0",
 		"eslint-plugin-astro": "^1.2.3",
 		"eslint-plugin-svelte": "^2.43.0",
-		"husky": "^9.1.4",
 		"postcss-html": "^1.7.0",
 		"postcss-lightningcss": "^1.0.1",
 		"postcss-url": "^10.1.3",
